@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oraya — Brand Guidelines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400..700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --ink: #141416;
+    --ink-2: #1D1D20;
+    --ink-3: #242428;
+    --screen: #F1F1F2;
+    --screen-dim: #9C9BA3;
+    --aura-solid: #E5502E;
+    --aura: radial-gradient(circle at 30% 30%, #F2871E 0%, #E5502E 45%, #D6407A 100%);
+    --grey: #8C8A92;
+    --line: rgba(241,241,242,0.10);
+    --line-strong: rgba(241,241,242,0.18);
+    --on-accent: #FFFFFF;
+    --font-display: 'Familjen Grotesk', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  /* Dark is the default here, matching Studio's "edit bay" default —
+     but the page genuinely inverts on a light preference, the same
+     way Learn and Showcase do in the product. See the Theme section. */
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ink: #FFFFFF; --ink-2: #F4F4F5; --ink-3: #ECECED;
+      --screen: #17171A; --screen-dim: #6E6D74; --grey: #6E6D74;
+      --line: rgba(23,23,26,0.10); --line-strong: rgba(23,23,26,0.18);
+    }
+  }
+  :root[data-theme="light"] {
+    --ink: #FFFFFF; --ink-2: #F4F4F5; --ink-3: #ECECED;
+    --screen: #17171A; --screen-dim: #6E6D74; --grey: #6E6D74;
+    --line: rgba(23,23,26,0.10); --line-strong: rgba(23,23,26,0.18);
+  }
+  :root[data-theme="dark"] {
+    --ink: #141416; --ink-2: #1D1D20; --ink-3: #242428;
+    --screen: #F1F1F2; --screen-dim: #9C9BA3; --grey: #8C8A92;
+    --line: rgba(241,241,242,0.10); --line-strong: rgba(241,241,242,0.18);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--screen);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--aura-solid); color: var(--on-accent); }
+
+  a { color: var(--screen); }
+
+  .wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  p { max-width: 62ch; color: var(--screen-dim); }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    color: var(--screen);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  /* ---------- nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--ink) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap {
+    display: flex; align-items: center; gap: 22px;
+    overflow-x: auto; white-space: nowrap;
+    padding-top: 14px; padding-bottom: 14px;
+    scrollbar-width: none;
+  }
+  nav .wrap::-webkit-scrollbar { display: none; }
+  .nav-mark { width: 20px; height: 20px; flex: none; }
+  nav a.navlink {
+    font-size: 13.5px; color: var(--screen-dim); text-decoration: none;
+    font-family: var(--font-body);
+  }
+  nav a.navlink:hover { color: var(--screen); }
+
+  /* ---------- hero ---------- */
+  .hero {
+    padding: 96px 0 84px;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-mark { width: 84px; height: 84px; margin: 0 auto 36px; display: block; }
+  .hero h1 {
+    font-size: clamp(48px, 10vw, 92px);
+    font-weight: 700;
+    line-height: 0.98;
+  }
+  .hero .tag {
+    font-family: var(--font-body);
+    font-size: clamp(16px, 2.4vw, 20px);
+    color: var(--screen-dim);
+    max-width: 46ch;
+    margin: 22px auto 0;
+  }
+  .hero .meta {
+    margin-top: 40px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--grey);
+  }
+
+  /* ---------- sections ---------- */
+  section { padding: 76px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--aura-solid);
+    margin-bottom: 10px;
+  }
+  section h2 {
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 600;
+    margin-bottom: 18px;
+    max-width: 22ch;
+  }
+  .lede { font-size: 17px; color: var(--screen-dim); margin-bottom: 40px; }
+
+  /* ---------- overview ---------- */
+  .story-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  }
+  .story-grid h3 {
+    font-size: 15px; font-weight: 600; margin-bottom: 10px;
+    font-family: var(--font-body); color: var(--screen);
+  }
+  .story-grid p { font-size: 15px; margin-bottom: 0; }
+  .pull {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(22px, 3vw, 28px);
+    line-height: 1.35;
+    color: var(--screen);
+    max-width: 34ch;
+    margin: 44px 0 0;
+    padding-top: 28px;
+    border-top: 1px solid var(--line-strong);
+  }
+
+  /* ---------- personality ---------- */
+  .trait-row {
+    display: grid; grid-template-columns: 200px 1fr;
+    gap: 24px; padding: 22px 0;
+    border-top: 1px solid var(--line);
+  }
+  .trait-row:last-child { border-bottom: 1px solid var(--line); }
+  .trait-row h3 {
+    font-family: var(--font-body); font-size: 16px; font-weight: 600;
+    color: var(--screen); margin: 0;
+  }
+  .trait-row p { margin: 0; font-size: 14.5px; }
+
+  .voice-table { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--line-strong); }
+  .voice-col { padding: 22px 26px; }
+  .voice-col:first-child { border-right: 1px solid var(--line); }
+  .voice-col .label { font-family: var(--font-mono); font-size: 12px; margin-bottom: 14px; }
+  .voice-col.say .label { color: var(--aura-solid); }
+  .voice-col.avoid .label { color: var(--grey); }
+  .voice-col p { font-size: 14.5px; margin: 0 0 12px; color: var(--screen); }
+  .voice-col p:last-child { margin-bottom: 0; }
+
+  /* ---------- logo ---------- */
+  .lockup-stage {
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+    padding: 64px 32px;
+    display: flex; align-items: center; justify-content: center; gap: 18px;
+    margin-bottom: 36px;
+  }
+  .lockup-stage svg { width: 56px; height: 56px; }
+  .lockup-stage .word {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 44px; letter-spacing: -0.01em;
+  }
+  .rule-list { border-top: 1px solid var(--line-strong); }
+  .rule-item {
+    display: grid; grid-template-columns: 160px 1fr; gap: 24px;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .rule-item .k { font-family: var(--font-mono); font-size: 12.5px; color: var(--grey); }
+  .rule-item p { margin: 0; font-size: 14.5px; }
+
+  .misuse-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px; }
+  .misuse-card {
+    background: var(--ink-2); border: 1px solid var(--line);
+    padding: 28px 16px; text-align: center;
+  }
+  .misuse-card .stage { height: 60px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+  .misuse-card svg { width: 40px; height: 40px; }
+  .misuse-card .cap { font-size: 13px; color: var(--screen-dim); }
+
+  /* ---------- color ---------- */
+  .swatch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); margin-bottom: 48px; }
+  .swatch { background: var(--ink); padding: 28px 20px; }
+  .swatch .chip { height: 84px; margin-bottom: 18px; }
+  .swatch .name { font-size: 14.5px; font-weight: 600; margin-bottom: 4px; }
+  .swatch .hex { font-family: var(--font-mono); font-size: 12.5px; color: var(--grey); }
+  .swatch .use { font-size: 13px; color: var(--screen-dim); margin-top: 8px; }
+
+  .grade-demo {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--line); margin-top: 12px;
+  }
+  .grade-demo .frame { aspect-ratio: 9/13; position: relative; overflow: hidden; }
+  .grade-demo .frame .tag {
+    position: absolute; bottom: 14px; left: 14px;
+    font-family: var(--font-mono); font-size: 11.5px; color: var(--ink);
+    background: rgba(241,241,242,0.85); padding: 3px 8px;
+  }
+
+  .subhead {
+    font-family: var(--font-body); font-size: 14.5px; font-weight: 600;
+    color: var(--screen); margin: 44px 0 18px;
+  }
+  .surface-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); margin-bottom: 18px; }
+  .surface { background: var(--ink); padding: 28px 22px; }
+  .surface .s-top { height: 4px; background: var(--accent); margin: -28px -22px 26px; }
+  .surface .s-lockup { font-family: var(--font-display); font-weight: 700; font-size: 19px; margin-bottom: 14px; }
+  .surface .s-o { color: var(--screen); }
+  .surface .s-name { color: var(--accent); margin-left: 3px; }
+  .surface-grad .s-name {
+    background: var(--accent); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .surface .s-desc { font-size: 13.5px; color: var(--screen-dim); margin: 0 0 18px; }
+  .surface .s-chip { font-family: var(--font-mono); font-size: 11px; color: var(--grey); margin-bottom: 6px; }
+  .surface .s-motif { font-size: 12px; color: var(--screen-dim); margin: 0; }
+
+  /* ---------- theme ---------- */
+  .theme-demo { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); margin-bottom: 40px; }
+  .theme-card { padding: 26px; }
+  .theme-label { font-family: var(--font-mono); font-size: 12px; margin-bottom: 18px; }
+  .theme-panel { padding: 22px; }
+  .theme-h { font-family: var(--font-display); font-weight: 600; font-size: 17px; margin-bottom: 8px; }
+  .theme-p { font-size: 13.5px; margin-bottom: 18px; }
+  .theme-btn { display: inline-block; font-family: var(--font-body); font-weight: 600; font-size: 13px; padding: 9px 16px; border-radius: 7px; }
+
+  .token-table { border-top: 1px solid var(--line-strong); }
+  .token-row { display: grid; grid-template-columns: 110px 1fr 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); align-items: center; }
+  .token-row .tk { font-family: var(--font-mono); font-size: 12.5px; color: var(--grey); }
+  .token-swatch { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 12px; color: var(--screen-dim); }
+  .token-dot { width: 14px; height: 14px; border: 1px solid var(--line-strong); flex: none; }
+
+  /* ---------- type ---------- */
+  .type-row { padding: 30px 0; border-top: 1px solid var(--line); }
+  .type-row:last-child { border-bottom: 1px solid var(--line); }
+  .type-row .meta-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+  .type-row .meta-row .name { font-size: 13px; color: var(--grey); font-family: var(--font-mono); }
+  .type-row .sample-display { font-family: var(--font-display); font-weight: 700; font-size: 40px; letter-spacing: -0.01em; }
+  .type-row .sample-h { font-family: var(--font-display); font-weight: 600; font-size: 26px; }
+  .type-row .sample-body { font-family: var(--font-body); font-size: 17px; color: var(--screen-dim); max-width: 52ch; }
+  .type-row .sample-mono { font-family: var(--font-mono); font-size: 14px; color: var(--aura-solid); }
+
+  /* ---------- ui principles ---------- */
+  .principle {
+    display: grid; grid-template-columns: 40px 1fr; gap: 20px;
+    padding: 26px 0; border-top: 1px solid var(--line);
+  }
+  .principle:last-child { border-bottom: 1px solid var(--line); }
+  .principle .n { font-family: var(--font-mono); font-size: 13px; color: var(--aura-solid); }
+  .principle h3 { font-family: var(--font-body); font-size: 15.5px; font-weight: 600; margin-bottom: 6px; }
+  .principle p { margin: 0; font-size: 14.5px; }
+
+  /* ---------- applications ---------- */
+  .app-stage {
+    background: var(--ink-2); border: 1px solid var(--line);
+    padding: 48px 32px; margin-bottom: 20px;
+  }
+  .app-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+  .prompt-bar {
+    display: flex; flex-direction: column; gap: 14px;
+    background: color-mix(in srgb, var(--screen) 4%, transparent);
+    border: 1px solid color-mix(in srgb, var(--screen) 10%, transparent);
+    border-radius: 16px; padding: 16px; margin-bottom: 20px;
+  }
+  .prompt-bar .ph { color: color-mix(in srgb, var(--screen) 30%, transparent); font-family: var(--font-body); font-size: 15px; }
+  .prompt-bar .row { display: flex; align-items: center; justify-content: space-between; }
+  .prompt-bar .left { display: flex; gap: 8px; }
+  .icon-btn {
+    width: 36px; height: 36px; border-radius: 999px; display: flex; align-items: center; justify-content: center;
+    color: var(--screen-dim); border: 1px solid color-mix(in srgb, var(--screen) 10%, transparent);
+  }
+  .generate-pill {
+    display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 999px;
+    background: var(--aura); color: #FFFFFF; font-family: var(--font-body); font-weight: 500; font-size: 14.5px;
+  }
+
+  /* ---------- status ---------- */
+  .status-flat-demo { display: flex; gap: 12px; align-items: center; margin: 28px 0; flex-wrap: wrap; }
+  .status-chip {
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px;
+    font-family: var(--font-body); font-size: 13.5px; font-weight: 500; color: #141416;
+  }
+  .status-chip svg { flex: none; }
+  .status-chip.generating { background: var(--aura); color: #FFFFFF; }
+
+  /* ---------- icons ---------- */
+  .icon-row { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
+  .icon-spec { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .icon-spec .box {
+    width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line-strong); color: var(--screen);
+  }
+  .icon-spec .lbl { font-family: var(--font-mono); font-size: 11px; color: var(--grey); }
+
+  /* ---------- motion ---------- */
+  @keyframes auraPulse {
+    0%, 100% { transform: scale(1); opacity: 0.92; }
+    50% { transform: scale(1.08); opacity: 1; }
+  }
+  .pulse-orb {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--aura);
+    animation: auraPulse 2.4s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pulse-orb { animation: none; }
+  }
+  .motion-demo {
+    display: flex; align-items: center; gap: 24px;
+    background: var(--ink-2); border: 1px solid var(--line); padding: 32px; margin: 28px 0;
+  }
+  .motion-demo .cap { font-size: 13.5px; color: var(--screen-dim); }
+  .timing-table { border-top: 1px solid var(--line-strong); }
+
+  /* ---------- imagery ---------- */
+  .shot-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 24px 0; }
+  .shot-grid .shot { aspect-ratio: 9/16; border-radius: 10px; }
+  .btn {
+    font-family: var(--font-body); font-weight: 600; font-size: 14.5px;
+    padding: 12px 22px; border-radius: 7px; border: none; cursor: default;
+    background: var(--aura); color: var(--on-accent);
+  }
+  .btn.secondary {
+    background: transparent; color: var(--screen);
+    border: 1px solid var(--line-strong);
+  }
+  .chip {
+    font-family: var(--font-mono); font-size: 12px; color: var(--screen-dim);
+    border: 1px solid var(--line-strong); border-radius: 999px;
+    padding: 6px 13px; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .chip .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--aura-solid); }
+  .app-caption { font-family: var(--font-mono); font-size: 12px; color: var(--grey); margin-top: 12px; }
+
+  /* ---------- dont ---------- */
+  .dont-list { border-top: 1px solid var(--line-strong); }
+  .dont-item { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+  .dont-item .no { color: var(--grey); font-family: var(--font-mono); font-size: 12px; margin-bottom: 6px; }
+  .dont-item .yes { color: var(--aura-solid); font-family: var(--font-mono); font-size: 12px; margin-bottom: 6px; }
+  .dont-item p { margin: 0; font-size: 14px; }
+
+  footer { padding: 60px 0 90px; }
+  footer p { font-size: 13.5px; color: var(--grey); }
+
+  @media (max-width: 720px) {
+    .story-grid { grid-template-columns: 1fr; gap: 32px; }
+    .swatch-grid { grid-template-columns: repeat(2, 1fr); }
+    .misuse-grid { grid-template-columns: 1fr; }
+    .voice-table { grid-template-columns: 1fr; }
+    .voice-col:first-child { border-right: none; border-bottom: 1px solid var(--line); }
+    .trait-row, .rule-item, .principle, .dont-item { grid-template-columns: 1fr; gap: 8px; }
+    .grade-demo, .theme-demo { grid-template-columns: 1fr; }
+    .token-row { grid-template-columns: 1fr 1fr; }
+    .token-row .tk { grid-column: 1 / -1; }
+    .shot-grid { grid-template-columns: repeat(2, 1fr); }
+    .motion-demo { flex-direction: column; align-items: flex-start; }
+    section { padding: 56px 0; }
+    .hero { padding: 72px 0 56px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <svg class="nav-mark" viewBox="0 0 120 120"><defs><radialGradient id="g0" cx="35%" cy="35%" r="75%"><stop offset="0%" stop-color="#F2871E"/><stop offset="45%" stop-color="#E5502E"/><stop offset="100%" stop-color="#D6407A"/></radialGradient></defs><circle cx="52" cy="62" r="36" fill="none" style="stroke:var(--screen)" stroke-width="6"/><circle cx="82" cy="34" r="18" fill="url(#g0)"/></svg>
+    <a class="navlink" href="#overview">Overview</a>
+    <a class="navlink" href="#personality">Personality</a>
+    <a class="navlink" href="#logo">Logo</a>
+    <a class="navlink" href="#color">Color</a>
+    <a class="navlink" href="#theme">Theme</a>
+    <a class="navlink" href="#status">Status</a>
+    <a class="navlink" href="#type">Type &amp; icons</a>
+    <a class="navlink" href="#motion">Motion</a>
+    <a class="navlink" href="#ui">UI principles</a>
+    <a class="navlink" href="#imagery">Imagery</a>
+    <a class="navlink" href="#applications">Applications</a>
+    <a class="navlink" href="#dont">Usage</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <svg class="hero-mark" viewBox="0 0 120 120"><defs><radialGradient id="g1" cx="35%" cy="35%" r="75%"><stop offset="0%" stop-color="#F2871E"/><stop offset="45%" stop-color="#E5502E"/><stop offset="100%" stop-color="#D6407A"/></radialGradient></defs><circle cx="52" cy="62" r="36" fill="none" style="stroke:var(--screen)" stroke-width="6"/><circle cx="82" cy="34" r="18" fill="url(#g1)"/></svg>
+    <h1>Oraya</h1>
+    <p class="tag">Where students direct with AI — script to screen, shot by shot, in the vertical format the world already watches.</p>
+    <p class="meta">Brand guidelines, draft one. Written for the team building the platform.</p>
+  </div>
+</header>
+
+<section id="overview">
+  <div class="wrap">
+    <div class="kicker">Overview</div>
+    <h2>A dark room, one bright frame</h2>
+    <p class="lede">Oraya teaches students to make AI-assisted film and vertical drama — the same script-to-storyboard-to-video path professional tools use, built for people who are learning it for the first time.</p>
+    <div class="story-grid">
+      <div>
+        <h3>The name</h3>
+        <p>Oraya joins "ora" — a glow, the light a screen throws across a dark room — with "raya," a beam. It's the ray leaving the projector a half-second before it becomes a picture: raw energy, about to become a story. Treat that image as the brand's center of gravity — everything visual comes back to a dark space with one lit thing in it.</p>
+      </div>
+      <div>
+        <h3>Who it's for</h3>
+        <p>Students who've never touched a camera or a timeline, learning to direct anyway. They're ambitious — they want work that reads as global-standard, not a student project. The brand has to feel like a real filmmaking tool that happens to be teaching them, never like a toy.</p>
+      </div>
+    </div>
+    <p class="pull">Confident like a tool built for professionals. Warm like a classroom. Never precious about either.</p>
+  </div>
+</section>
+
+<section id="personality">
+  <div class="wrap">
+    <div class="kicker">Personality</div>
+    <h2>How Oraya behaves</h2>
+    <p class="lede">Four traits, held in tension on purpose — a brand that leaned fully into any one of them would stop being useful to a beginner or stop feeling credible to a professional.</p>
+    <div class="trait-row">
+      <h3>Exact</h3>
+      <p>Says what a setting does, what a shot costs, what a model produces. No vague marketing words where a real number or term belongs — students are learning the actual vocabulary of the craft.</p>
+    </div>
+    <div class="trait-row">
+      <h3>Unintimidated</h3>
+      <p>Treats a first-time filmmaker as a director, not a hobbyist. Never talks down, never over-explains the obvious, never hides behind excessive encouragement.</p>
+    </div>
+    <div class="trait-row">
+      <h3>Cinematic</h3>
+      <p>Reaches for film's own language — light, grain, frame, cut — before it reaches for generic software words like "dashboard" or "workflow."</p>
+    </div>
+    <div class="trait-row">
+      <h3>Quiet until it isn't</h3>
+      <p>Calm and monochrome by default. Color and motion show up only at the moment something is being created — never as constant decoration.</p>
+    </div>
+
+    <div class="voice-table">
+      <div class="voice-col say">
+        <div class="label">Say it like this</div>
+        <p>"Render at 480p while you're drafting the scene, then switch to 4K for the final cut."</p>
+        <p>"This shot uses two reference images and one voice clip."</p>
+      </div>
+      <div class="voice-col avoid">
+        <div class="label">Not like this</div>
+        <p>"Unlock stunning cinematic magic with our revolutionary AI engine!"</p>
+        <p>"Oops! Something went a little wrong on our end, sorry about that!"</p>
+      </div>
+    </div>
+
+    <div class="subhead">Voice by surface</div>
+    <p style="font-size:14.5px; color:var(--screen-dim); max-width:60ch; margin-bottom:24px;">The four traits above hold everywhere, but the register shifts with what the surface is for — the same way a director talks differently on set than in a lecture hall than at a premiere.</p>
+    <div class="trait-row">
+      <h3>Studio</h3>
+      <p>Terse and technical, like a director's shot note. States what something costs or does, skips the encouragement. "Two references max on this model" — not "great choice, let's add some references!"</p>
+    </div>
+    <div class="trait-row">
+      <h3>Learn</h3>
+      <p>The most patient of the three. Explains why a technique works, not just what button to press, and never implies a question is too basic to ask.</p>
+    </div>
+    <div class="trait-row">
+      <h3>Showcase</h3>
+      <p>Written for an audience that isn't students — a stranger scrolling in from a shared link. Warmer and more third-person than the other two: names the filmmaker, not "you."</p>
+    </div>
+  </div>
+</section>
+
+<section id="logo">
+  <div class="wrap">
+    <div class="kicker">Logo</div>
+    <h2>The mark</h2>
+    <p class="lede">An aperture ring with a light source caught at its edge — the iris of a lens, opening on the beam the name describes. It should read at 16px in a browser tab and fill a full slide with the same two shapes.</p>
+
+    <div class="lockup-stage">
+      <svg viewBox="0 0 120 120"><defs><radialGradient id="g2" cx="35%" cy="35%" r="75%"><stop offset="0%" stop-color="#F2871E"/><stop offset="45%" stop-color="#E5502E"/><stop offset="100%" stop-color="#D6407A"/></radialGradient></defs><circle cx="52" cy="62" r="36" fill="none" style="stroke:var(--screen)" stroke-width="6"/><circle cx="82" cy="34" r="18" fill="url(#g2)"/></svg>
+      <span class="word">Oraya</span>
+    </div>
+
+    <div class="rule-list">
+      <div class="rule-item">
+        <div class="k">Clear space</div>
+        <p>Leave space equal to the ring's own diameter on every side. Nothing else — text, edges, other marks — sits inside that margin.</p>
+      </div>
+      <div class="rule-item">
+        <div class="k">Minimum size</div>
+        <p>16px tall for the mark alone, 20px tall for the full lockup with wordmark. Below that, use the ring on its own.</p>
+      </div>
+      <div class="rule-item">
+        <div class="k">Color</div>
+        <p>The orb is always this exact warm gradient — never flattened to one color, never recolored to another surface's hue. The ring is always the screen color or pure white.</p>
+      </div>
+    </div>
+
+    <div class="misuse-grid">
+      <div class="misuse-card">
+        <div class="stage"><svg viewBox="0 0 120 120" style="transform: scaleX(1.8)"><defs><radialGradient id="g3" cx="35%" cy="35%" r="75%"><stop offset="0%" stop-color="#F2871E"/><stop offset="45%" stop-color="#E5502E"/><stop offset="100%" stop-color="#D6407A"/></radialGradient></defs><circle cx="52" cy="62" r="36" fill="none" style="stroke:var(--screen)" stroke-width="6"/><circle cx="82" cy="34" r="18" fill="url(#g3)"/></svg></div>
+        <div class="cap">Don't stretch the mark</div>
+      </div>
+      <div class="misuse-card">
+        <div class="stage"><svg viewBox="0 0 120 120"><circle cx="52" cy="62" r="36" fill="none" stroke="#8C8A92" stroke-width="6"/><circle cx="82" cy="34" r="18" fill="#8C8A92"/></svg></div>
+        <div class="cap">Don't flatten it to one grey</div>
+      </div>
+      <div class="misuse-card">
+        <div class="stage"><svg viewBox="0 0 120 120"><defs><radialGradient id="g4" cx="35%" cy="35%" r="75%"><stop offset="0%" stop-color="#F2871E"/><stop offset="45%" stop-color="#E5502E"/><stop offset="100%" stop-color="#D6407A"/></radialGradient></defs><circle cx="52" cy="62" r="36" fill="none" style="stroke:var(--screen)" stroke-width="6"/><circle cx="82" cy="34" r="18" fill="url(#g4)"/><circle cx="30" cy="90" r="14" fill="url(#g4)"/></svg></div>
+        <div class="cap">Don't add a second light source</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="color">
+  <div class="wrap">
+    <div class="kicker">Color</div>
+    <h2>Black and white at the core, color at the door</h2>
+    <p class="lede">Oraya itself never carries color — the wordmark, the login, the nav around everything stay ink, screen, and grey. Color belongs to whichever room you've walked into: Studio, Learn, or Showcase each get exactly one accent, the way a cinema is dark until you step through a specific door.</p>
+
+    <div class="subhead">Master palette — dark values shown; see Theme below for light</div>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="chip" style="background:#141416"></div>
+        <div class="name">Ink</div>
+        <div class="hex">#141416</div>
+        <div class="use">Base background, dark mode</div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#F1F1F2"></div>
+        <div class="name">Screen</div>
+        <div class="hex">#F1F1F2</div>
+        <div class="use">Primary text, the mark's ring</div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#8C8A92"></div>
+        <div class="name">Grey</div>
+        <div class="hex">#8C8A92</div>
+        <div class="use">Secondary labels, borders, timecodes</div>
+      </div>
+    </div>
+
+    <div class="subhead">Surfaces — one accent each, never shared</div>
+    <div class="surface-grid">
+      <div class="surface surface-grad" style="--accent: var(--aura);">
+        <div class="s-top"></div>
+        <div class="s-lockup"><span class="s-o">Oraya</span><span class="s-name">Studio</span></div>
+        <p class="s-desc">Script to storyboard to final render — the tool itself. Aura is "ora" made visible — the glow the name describes, rendered as light gathering into a picture. It shows up while something is actively generating, never on a finished frame.</p>
+        <div class="s-chip">#F2871E → #D6407A</div>
+        <p class="s-motif">Motif: the aura glow, warm light collecting at the mark's edge</p>
+      </div>
+      <div class="surface" style="--accent: #4C82F0;">
+        <div class="s-top"></div>
+        <div class="s-lockup"><span class="s-o">Oraya</span><span class="s-name">Learn</span></div>
+        <p class="s-desc">Courses, lessons, the vocabulary of the craft. Blueline is named for the blue pencil animators use for guide marks — visible while you're working, gone from the finished frame.</p>
+        <div class="s-chip">#4C82F0 — Blueline</div>
+        <p class="s-motif">Motif: blue-pencil storyboard sketches</p>
+      </div>
+      <div class="surface" style="--accent: #8C52FF;">
+        <div class="s-top"></div>
+        <div class="s-lockup"><span class="s-o">Oraya</span><span class="s-name">Showcase</span></div>
+        <p class="s-desc">Where finished student films get screened and shared publicly. Velvet is the color of the curtain itself and the low house lights before a premiere — the one surface built to be seen by people who aren't students.</p>
+        <div class="s-chip">#8C52FF — Velvet</div>
+        <p class="s-motif">Motif: curtain folds, the dim glow of a house light</p>
+      </div>
+    </div>
+
+    <p style="font-size:14.5px; color:var(--screen-dim); margin-bottom:0;">A screen never mixes two surfaces' colors. If you're inside Learn, Studio's aura and Showcase's violet don't appear — Blueline is the only color on the page.</p>
+
+    <div class="grade-demo">
+      <div class="frame" style="background: radial-gradient(circle at 30% 30%, #F2871E 0%, #E5502E 45%, #D6407A 100%);"><span class="tag">Studio · generating</span></div>
+      <div class="frame" style="background: radial-gradient(circle at 30% 30%, #3a2a22, #141416 70%);"><span class="tag">Studio · rendered</span></div>
+    </div>
+
+    <div class="subhead">Naming the surfaces</div>
+    <div class="rule-list">
+      <div class="rule-item">
+        <div class="k">Do</div>
+        <p>OrayaStudio, OrayaLearn, OrayaShowcase — no space, one capital landing mid-word.</p>
+      </div>
+      <div class="rule-item">
+        <div class="k">Don't</div>
+        <p>Oraya Studio, oraya studio, ORAYASTUDIO, "Studio by Oraya," or any surface name without "Oraya" in front of it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="theme">
+  <div class="wrap">
+    <div class="kicker">Theme</div>
+    <h2>Dark by default, light where it's actually read in daylight</h2>
+    <p class="lede">Switching modes swaps five tokens — background, surface, text, dim text, border — and nothing else. Layout, spacing, and every surface's accent color stay exactly the same in both. That's the whole system: no separate light-mode redesign, just the same interface with its neutrals inverted.</p>
+
+    <div class="theme-demo">
+      <div class="theme-card" style="background:#141416; color:#F1F1F2;">
+        <div class="theme-label" style="color:#9C9BA3;">Dark</div>
+        <div class="theme-panel" style="background:#1D1D20; border:1px solid rgba(241,241,242,0.10);">
+          <div class="theme-h">Upload a script to begin</div>
+          <div class="theme-p" style="color:#9C9BA3;">Add reference images, video, and audio — up to fifty per shot.</div>
+          <div class="theme-btn" style="background:radial-gradient(circle at 30% 30%, #F2871E 0%, #E5502E 45%, #D6407A 100%); color:#FFFFFF;">Generate shot</div>
+        </div>
+      </div>
+      <div class="theme-card" style="background:#FFFFFF; color:#17171A;">
+        <div class="theme-label" style="color:#6E6D74;">Light</div>
+        <div class="theme-panel" style="background:#F4F4F5; border:1px solid rgba(23,23,26,0.10);">
+          <div class="theme-h">Upload a script to begin</div>
+          <div class="theme-p" style="color:#6E6D74;">Add reference images, video, and audio — up to fifty per shot.</div>
+          <div class="theme-btn" style="background:radial-gradient(circle at 30% 30%, #F2871E 0%, #E5502E 45%, #D6407A 100%); color:#FFFFFF;">Generate shot</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="token-table">
+      <div class="token-row">
+        <div class="tk"></div>
+        <div class="token-swatch" style="color:var(--screen); font-weight:600;">Dark</div>
+        <div class="token-swatch" style="color:var(--screen); font-weight:600;">Light</div>
+      </div>
+      <div class="token-row">
+        <div class="tk">Background</div>
+        <div class="token-swatch"><span class="token-dot" style="background:#141416;"></span>#141416</div>
+        <div class="token-swatch"><span class="token-dot" style="background:#FFFFFF;"></span>#FFFFFF</div>
+      </div>
+      <div class="token-row">
+        <div class="tk">Surface</div>
+        <div class="token-swatch"><span class="token-dot" style="background:#1D1D20;"></span>#1D1D20</div>
+        <div class="token-swatch"><span class="token-dot" style="background:#F4F4F5;"></span>#F4F4F5</div>
+      </div>
+      <div class="token-row">
+        <div class="tk">Text</div>
+        <div class="token-swatch"><span class="token-dot" style="background:#F1F1F2;"></span>#F1F1F2</div>
+        <div class="token-swatch"><span class="token-dot" style="background:#17171A;"></span>#17171A</div>
+      </div>
+      <div class="token-row">
+        <div class="tk">Text, dim</div>
+        <div class="token-swatch"><span class="token-dot" style="background:#9C9BA3;"></span>#9C9BA3</div>
+        <div class="token-swatch"><span class="token-dot" style="background:#6E6D74;"></span>#6E6D74</div>
+      </div>
+      <div class="token-row">
+        <div class="tk">Border</div>
+        <div class="token-swatch"><span class="token-dot" style="background:#141416;"></span>10% white</div>
+        <div class="token-swatch"><span class="token-dot" style="background:#FFFFFF;"></span>10% black</div>
+      </div>
+    </div>
+
+    <p style="font-size:15.5px; color:var(--screen-dim); max-width:56ch; margin-top:40px;">Studio defaults to Dark — an edit bay keeps the lights down. Learn and Showcase default to System, since a lesson or a premiere page gets opened in daylight as often as at night. Every surface lets a student override the default and choose Light, Dark, or System for themselves.</p>
+  </div>
+</section>
+
+<section id="status">
+  <div class="wrap">
+    <div class="kicker">Status</div>
+    <h2>Feedback colors are not surface colors</h2>
+    <p class="lede">Studio's aura already lives in warm orange-red territory, which is exactly where most products reach for "error" by default. Oraya doesn't fight that convention by picking a strange color for failure — it fixes the collision structurally: status colors are always flat, never a gradient, and never appear without an icon and a word next to them. The gradient itself becomes the signal. If it's glowing, Studio is making something. If it's flat, it's reporting on something that already happened.</p>
+
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="chip" style="background:#4ADE80"></div>
+        <div class="name">Success</div>
+        <div class="hex">#4ADE80</div>
+        <div class="use">Flat only. A shot saved, a render finished.</div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#F5B841"></div>
+        <div class="name">Warning</div>
+        <div class="hex">#F5B841</div>
+        <div class="use">Flat only, always with a triangle icon.</div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#E5484D"></div>
+        <div class="name">Error</div>
+        <div class="hex">#E5484D</div>
+        <div class="use">Flat only — a true red, never orange-leaning.</div>
+      </div>
+    </div>
+
+    <div class="status-flat-demo">
+      <span class="status-chip" style="background:#E5484D; color:#FFFFFF;"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3.5M8 10.5v.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Render failed</span>
+      <span class="status-chip generating"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.2 4.8L14 7l-4.8 1.2L8 13l-1.2-4.8L2 7l4.8-1.2L8 1z"/></svg>Generating</span>
+    </div>
+    <p style="font-size:14.5px; color:var(--screen-dim); margin-bottom:0;">Same neighborhood on the color wheel, never the same texture. A flat chip always means status; a glowing one always means Studio is working.</p>
+
+    <div class="rule-list" style="margin-top:32px;">
+      <div class="rule-item">
+        <div class="k">Do</div>
+        <p>Pair every status color with an icon and a text label — "Render failed," not a red dot alone.</p>
+      </div>
+      <div class="rule-item">
+        <div class="k">Don't</div>
+        <p>Use a gradient or glow on a status chip, or rely on color by itself to say a shot succeeded or failed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="type">
+  <div class="wrap">
+    <div class="kicker">Type</div>
+    <h2>Three faces, three jobs</h2>
+    <p class="lede">One display face carries the brand's personality. One body face carries every sentence a student actually has to read. One mono face is reserved for real technical data — timecodes, credits, resolutions — the same way the tool itself labels a shot.</p>
+
+    <div class="type-row">
+      <div class="meta-row"><span class="name">Display — Familjen Grotesk</span></div>
+      <div class="sample-display">Direct the scene</div>
+    </div>
+    <div class="type-row">
+      <div class="meta-row"><span class="name">Heading — Familjen Grotesk, 600</span></div>
+      <div class="sample-h">Upload a script to begin</div>
+    </div>
+    <div class="type-row">
+      <div class="meta-row"><span class="name">Body — IBM Plex Sans</span></div>
+      <div class="sample-body">Add up to fifty reference assets across images, video, and audio. Every shot keeps its own character list and voice so a retake never loses continuity.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta-row"><span class="name">Mono — IBM Plex Mono</span></div>
+      <div class="sample-mono">shot_04 · 0:12 · 720p · 84 credits</div>
+    </div>
+
+    <div class="subhead">Icons</div>
+    <p style="font-size:14.5px; color:var(--screen-dim); max-width:56ch; margin-bottom:8px;">1.5px stroke, rounded caps and joins, drawn on a 16px grid, always a single color via currentColor. Outline only — the logo mark is the one shape in the whole system allowed a fill and a gradient.</p>
+    <div class="icon-row">
+      <div class="icon-spec">
+        <div class="box"><svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="lbl">add</div>
+      </div>
+      <div class="icon-spec">
+        <div class="box"><svg width="18" height="18" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="5.5" cy="5.5" r="1" fill="currentColor"/><path d="M2 11l3.5-3.5a1 1 0 0 1 1.4 0L10 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="lbl">image</div>
+      </div>
+      <div class="icon-spec">
+        <div class="box"><svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M5 3l7 5-7 5V3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <div class="lbl">play</div>
+      </div>
+      <div class="icon-spec">
+        <div class="box"><svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="lbl">check</div>
+      </div>
+      <div class="icon-spec">
+        <div class="box"><svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M8 2L1 14h14L8 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 6.5v3M8 11.5v.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="lbl">warning</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="motion">
+  <div class="wrap">
+    <div class="kicker">Motion</div>
+    <h2>The aura breathes, everything else cuts</h2>
+    <p class="lede">Two different motion languages, never mixed. The aura is the only thing in Oraya that's allowed to move on its own, continuously, with no action behind it — because it's standing in for something actually happening in the background. Every other transition is quick and deliberate: it answers a click, then it's done moving.</p>
+
+    <div class="motion-demo">
+      <div class="pulse-orb"></div>
+      <div>
+        <div style="font-family:var(--font-body); font-weight:600; margin-bottom:4px;">Generating — live</div>
+        <div class="cap">2.4s ease-in-out, scale 1 → 1.08, opacity 0.92 → 1, infinite. Settles to a static circle the instant the render completes.</div>
+      </div>
+    </div>
+
+    <div class="timing-table">
+      <div class="rule-item">
+        <div class="k">Instant · 120ms</div>
+        <p>Hover and press feedback — a button dimming, a chip highlighting. Linear or ease-out.</p>
+      </div>
+      <div class="rule-item">
+        <div class="k">Settle · 300ms</div>
+        <p>A panel opening, a shot swapping in, a toast arriving. Ease-out — fast start, gentle stop, never a bounce.</p>
+      </div>
+      <div class="rule-item">
+        <div class="k">Ambient · 2.4s</div>
+        <p>The aura pulse alone. Nothing else on the aura scale — it's reserved for "this is still working."</p>
+      </div>
+    </div>
+    <p style="font-size:14.5px; color:var(--screen-dim); margin-top:24px; margin-bottom:0;">Every animation stops for a reduced-motion preference — the aura included. It still shows a solid gradient, it just stops breathing.</p>
+  </div>
+</section>
+
+<section id="ui">
+  <div class="wrap">
+    <div class="kicker">UI principles</div>
+    <h2>Rules for the product itself</h2>
+    <div class="principle">
+      <div class="n">A</div>
+      <div><h3>Dark leads, light is equal</h3><p>Studio opens in Dark by default; Learn and Showcase follow the system setting. Light mode is a first-class token swap, not a fallback — see Theme for the full pairing.</p></div>
+    </div>
+    <div class="principle">
+      <div class="n">B</div>
+      <div><h3>Color marks the surface, not the layout</h3><p>Each surface's one accent — Studio's aura, Learn's blue, Showcase's violet — lives on primary actions and live states only, never on backgrounds, nav bars, or as a wash behind static content. It never crosses into another surface's screens.</p></div>
+    </div>
+    <div class="principle">
+      <div class="n">C</div>
+      <div><h3>Mono means real data</h3><p>The mono face only ever labels something literally measured — a duration, a resolution, a credit count. It never substitutes for a heading or a button label.</p></div>
+    </div>
+    <div class="principle">
+      <div class="n">D</div>
+      <div><h3>Corners follow function</h3><p>Buttons and status chips round slightly, like something you'd tap. Panels, cards, and swatches stay square, like a slate or a color chip. The two shouldn't be confused.</p></div>
+    </div>
+    <div class="principle">
+      <div class="n">E</div>
+      <div><h3>Motion answers an action</h3><p>Things move when a render finishes, a shot gets added, a scrub bar updates — never as a decorative entrance on scroll. Full timing rules live in Motion.</p></div>
+    </div>
+    <div class="principle">
+      <div class="n">F</div>
+      <div><h3>Flat, always</h3><p>No drop shadows, no blur, no soft glows behind panels — anywhere. Depth comes from the ink/surface step and a hairline border, never a shadow. The single exception is the aura itself, which is allowed to glow because it's light, not a panel pretending to float.</p></div>
+    </div>
+    <div class="principle">
+      <div class="n">G</div>
+      <div><h3>Never color alone</h3><p>Every surface and every status pairs its color with a name, an icon, or a position — Studio's aura always sits next to the word "Studio" or "Generating," never expected to carry the meaning by itself. Body text holds WCAG AA contrast against its background in both themes.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="imagery">
+  <div class="wrap">
+    <div class="kicker">Imagery</div>
+    <h2>Brand colors never touch the footage</h2>
+    <p class="lede">Everything so far has been about the chrome around the work — panels, buttons, nav. The work itself follows a different rule entirely: a generated shot stays true to whatever the student is actually making. Aura, Blueline, and Velvet never tint, filter, or grade the actual output. A student making a naturalistic drama and a student making a neon thriller should never have their footage nudged toward "Oraya's colors."</p>
+
+    <div class="rule-list">
+      <div class="rule-item">
+        <div class="k">The exception</div>
+        <p>Placeholder states, before anything has rendered, are the one place the aura is allowed inside a frame — a glowing rectangle standing in for a shot that doesn't exist yet. The moment real content arrives, the aura is gone.</p>
+      </div>
+      <div class="rule-item">
+        <div class="k">Aspect ratio</div>
+        <p>9:16 is the default frame everywhere in Studio and Showcase — the format the work actually ships in, not a landscape crop of it.</p>
+      </div>
+      <div class="rule-item">
+        <div class="k">Thumbnail corners</div>
+        <p>Small radius, around 10px — functional rounding like a button, not the sharp edge of a color swatch.</p>
+      </div>
+    </div>
+
+    <div class="shot-grid">
+      <div class="shot" style="background: var(--aura);"></div>
+      <div class="shot" style="background: radial-gradient(circle at 30% 20%, #3a2a22, #141416 70%);"></div>
+      <div class="shot" style="background: radial-gradient(circle at 70% 60%, #1a2a36, #141416 70%);"></div>
+      <div class="shot" style="background: radial-gradient(circle at 40% 70%, #2a2a1a, #141416 70%);"></div>
+    </div>
+    <p style="font-size:13.5px; color:var(--grey); margin-top:-8px;">Left: the placeholder, before a shot exists. The rest: three finished frames — three different naturalistic grades, none of them Oraya's.</p>
+  </div>
+</section>
+
+<section id="applications">
+  <div class="wrap">
+    <div class="kicker">Applications</div>
+    <h2>In practice</h2>
+    <div class="prompt-bar">
+      <div class="ph">Describe the shot you want to generate…</div>
+      <div class="row">
+        <div class="left">
+          <span class="icon-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          <span class="icon-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.3"/><circle cx="5.5" cy="5.5" r="1" fill="currentColor"/><path d="M2 11l3.5-3.5a1 1 0 0 1 1.4 0L10 10.5M9 9.5l1.5-1.5a1 1 0 0 1 1.4 0L14 10.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+        <span class="generate-pill"><svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.2 4.8L14 7l-4.8 1.2L8 13l-1.2-4.8L2 7l4.8-1.2L8 1z"/></svg>Generate</span>
+      </div>
+    </div>
+    <div class="app-stage">
+      <div class="app-row">
+        <button class="btn">Generate shot</button>
+        <button class="btn secondary">Save draft</button>
+        <span class="chip"><span class="dot"></span>Rendering</span>
+        <span class="chip">720p · 4s</span>
+      </div>
+    </div>
+    <p class="app-caption">The prompt bar: a 4%-tint panel with a 10%-tint hairline border — never a flat surface color — and the pill button in Studio's aura, white text. Primary actions elsewhere follow the same aura fill, secondary actions stay outlined, status data stays in mono chips.</p>
+  </div>
+</section>
+
+<section id="dont">
+  <div class="wrap">
+    <div class="kicker">Usage</div>
+    <h2>Quick reference</h2>
+    <div class="dont-list">
+      <div class="dont-item">
+        <div><div class="yes">Do</div><p>Use one surface's accent once per screen, on the thing you want a student to do next.</p></div>
+        <div><div class="no">Don't</div><p>Mix two surfaces' colors on one screen, or apply an accent to backgrounds and borders.</p></div>
+      </div>
+      <div class="dont-item">
+        <div><div class="yes">Do</div><p>Write instructions the way a director would give a note — direct, specific, no hedging.</p></div>
+        <div><div class="no">Don't</div><p>Add exclamation points or "revolutionary," "magic," "stunning" to describe a feature.</p></div>
+      </div>
+      <div class="dont-item">
+        <div><div class="yes">Do</div><p>Let Light and Dark swap only the five theme tokens — background, surface, text, dim text, border.</p></div>
+        <div><div class="no">Don't</div><p>Redesign spacing, imagery, or accent colors between modes, or hardcode a color that ignores the current theme.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Oraya brand guidelines, draft one — a starting system for the team to test, argue with, and refine as the product takes shape.</p>
+  </div>
+</footer>
+
+</body>
+</html>
